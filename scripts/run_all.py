@@ -27,7 +27,7 @@ def main():
 
     for step in STEPS:
         proc = subprocess.run(
-            [sys.executable, str(HERE / f"{step}.py"), "--output-dir", str(OUT)],
+            [sys.executable, "-B", str(HERE / f"{step}.py"), "--output-dir", str(OUT)],
             capture_output=True, text=True)
         log_name = f"{step}.log"
         (OUT / log_name).write_text(proc.stdout + proc.stderr)
