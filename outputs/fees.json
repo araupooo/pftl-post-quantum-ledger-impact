@@ -1,0 +1,241 @@
+{
+  "reference_fee_drops": 10,
+  "base_fee_level": 256,
+  "open_ledger_limit_target": 50,
+  "open_ledger_limit_min": 5,
+  "escalation": [
+    {
+      "tx_in_open_ledger": 1,
+      "limit": 50,
+      "required_fee_level": 256,
+      "required_fee_drops": 10.0
+    },
+    {
+      "tx_in_open_ledger": 10,
+      "limit": 50,
+      "required_fee_level": 256,
+      "required_fee_drops": 10.0
+    },
+    {
+      "tx_in_open_ledger": 50,
+      "limit": 50,
+      "required_fee_level": 256,
+      "required_fee_drops": 10.0
+    },
+    {
+      "tx_in_open_ledger": 51,
+      "limit": 50,
+      "required_fee_level": 266.3,
+      "required_fee_drops": 10.4
+    },
+    {
+      "tx_in_open_ledger": 60,
+      "limit": 50,
+      "required_fee_level": 368.6,
+      "required_fee_drops": 14.4
+    },
+    {
+      "tx_in_open_ledger": 100,
+      "limit": 50,
+      "required_fee_level": 1024.0,
+      "required_fee_drops": 40.0
+    },
+    {
+      "tx_in_open_ledger": 200,
+      "limit": 50,
+      "required_fee_level": 4096.0,
+      "required_fee_drops": 160.0
+    },
+    {
+      "tx_in_open_ledger": 500,
+      "limit": 50,
+      "required_fee_level": 25600.0,
+      "required_fee_drops": 1000.0
+    }
+  ],
+  "base_fee_by_scheme": {
+    "Ed25519": {
+      "model_tx_bytes": 297,
+      "base_fee_drops": 10,
+      "bytes_per_drop_at_base_load": 29.7
+    },
+    "secp256k1": {
+      "model_tx_bytes": 297,
+      "base_fee_drops": 10,
+      "bytes_per_drop_at_base_load": 29.7
+    },
+    "ML-DSA-44": {
+      "model_tx_bytes": 3932,
+      "base_fee_drops": 10,
+      "bytes_per_drop_at_base_load": 393.2
+    },
+    "ML-DSA-65": {
+      "model_tx_bytes": 5461,
+      "base_fee_drops": 10,
+      "bytes_per_drop_at_base_load": 546.1
+    },
+    "ML-DSA-87": {
+      "model_tx_bytes": 7419,
+      "base_fee_drops": 10,
+      "bytes_per_drop_at_base_load": 741.9
+    },
+    "SLH-DSA-128s": {
+      "model_tx_bytes": 8088,
+      "base_fee_drops": 10,
+      "bytes_per_drop_at_base_load": 808.8
+    },
+    "SLH-DSA-128f": {
+      "model_tx_bytes": 17320,
+      "base_fee_drops": 10,
+      "bytes_per_drop_at_base_load": 1732.0
+    },
+    "SLH-DSA-192s": {
+      "model_tx_bytes": 16472,
+      "base_fee_drops": 10,
+      "bytes_per_drop_at_base_load": 1647.2
+    },
+    "SLH-DSA-192f": {
+      "model_tx_bytes": 35912,
+      "base_fee_drops": 10,
+      "bytes_per_drop_at_base_load": 3591.2
+    },
+    "SLH-DSA-256s": {
+      "model_tx_bytes": 30056,
+      "base_fee_drops": 10,
+      "bytes_per_drop_at_base_load": 3005.6
+    },
+    "SLH-DSA-256f": {
+      "model_tx_bytes": 50120,
+      "base_fee_drops": 10,
+      "bytes_per_drop_at_base_load": 5012.0
+    }
+  },
+  "spam": {
+    "Ed25519": {
+      "model_tx_bytes": 297,
+      "tx_per_1mb": 3367,
+      "drops_per_1mb_at_base_load": 33670,
+      "xrp_per_1mb_at_base_load": 0.03367
+    },
+    "secp256k1": {
+      "model_tx_bytes": 297,
+      "tx_per_1mb": 3367,
+      "drops_per_1mb_at_base_load": 33670,
+      "xrp_per_1mb_at_base_load": 0.03367
+    },
+    "ML-DSA-44": {
+      "model_tx_bytes": 3932,
+      "tx_per_1mb": 254,
+      "drops_per_1mb_at_base_load": 2540,
+      "xrp_per_1mb_at_base_load": 0.00254
+    },
+    "ML-DSA-65": {
+      "model_tx_bytes": 5461,
+      "tx_per_1mb": 183,
+      "drops_per_1mb_at_base_load": 1830,
+      "xrp_per_1mb_at_base_load": 0.00183
+    },
+    "ML-DSA-87": {
+      "model_tx_bytes": 7419,
+      "tx_per_1mb": 134,
+      "drops_per_1mb_at_base_load": 1340,
+      "xrp_per_1mb_at_base_load": 0.00134
+    },
+    "SLH-DSA-128s": {
+      "model_tx_bytes": 8088,
+      "tx_per_1mb": 123,
+      "drops_per_1mb_at_base_load": 1230,
+      "xrp_per_1mb_at_base_load": 0.00123
+    },
+    "SLH-DSA-128f": {
+      "model_tx_bytes": 17320,
+      "tx_per_1mb": 57,
+      "drops_per_1mb_at_base_load": 570,
+      "xrp_per_1mb_at_base_load": 0.00057
+    },
+    "SLH-DSA-192s": {
+      "model_tx_bytes": 16472,
+      "tx_per_1mb": 60,
+      "drops_per_1mb_at_base_load": 600,
+      "xrp_per_1mb_at_base_load": 0.0006
+    },
+    "SLH-DSA-192f": {
+      "model_tx_bytes": 35912,
+      "tx_per_1mb": 27,
+      "drops_per_1mb_at_base_load": 270,
+      "xrp_per_1mb_at_base_load": 0.00027
+    },
+    "SLH-DSA-256s": {
+      "model_tx_bytes": 30056,
+      "tx_per_1mb": 33,
+      "drops_per_1mb_at_base_load": 330,
+      "xrp_per_1mb_at_base_load": 0.00033
+    },
+    "SLH-DSA-256f": {
+      "model_tx_bytes": 50120,
+      "tx_per_1mb": 19,
+      "drops_per_1mb_at_base_load": 190,
+      "xrp_per_1mb_at_base_load": 0.00019
+    }
+  },
+  "fee_escalation_md_worked_example_cited": {
+    "limit": 6,
+    "8th_tx_level_about": 174000,
+    "8th_tx_drops_about": 6800,
+    "20th_tx_level_about": 1283000,
+    "20th_tx_drops_about": 50000,
+    "note": "Quoted from FeeEscalation.md; NOT recomputed by this script (the doc's cold-start median level is not stated)."
+  },
+  "checks": [
+    {
+      "name": "reference_fee_is_10_drops",
+      "status": "PASS",
+      "detail": "Config.h reference_fee{10}; xrpl.org Transaction Cost: 10 drops"
+    },
+    {
+      "name": "base_fee_level_is_256",
+      "status": "PASS",
+      "detail": "FeeEscalation.md: base fee level 256"
+    },
+    {
+      "name": "no_escalation_at_or_below_limit",
+      "status": "PASS",
+      "detail": "50 tx at limit 50 -> level 256 (10 drops)"
+    },
+    {
+      "name": "escalation_quadratic_above_limit",
+      "status": "PASS",
+      "detail": "100 tx at limit 50 -> level 256 x (100/50)^2 = 1024 (40 drops)"
+    },
+    {
+      "name": "base_fee_identical_all_schemes",
+      "status": "PASS",
+      "detail": "DERIVED: every scheme pays 10 drops at base load regardless of size"
+    },
+    {
+      "name": "mldsa65_same_base_fee_as_ed25519",
+      "status": "PASS",
+      "detail": "a 3309 B ML-DSA-65 signature costs the same 10 drops as a 64 B Ed25519 signature"
+    },
+    {
+      "name": "mldsa65_spam_cheaper_per_mb",
+      "status": "PASS",
+      "detail": "DERIVED: 1 MB of ledger via ML-DSA-65 costs 1,830 drops vs 33,670 drops via Ed25519"
+    },
+    {
+      "name": "slh256f_spam_cheapest_per_mb",
+      "status": "PASS",
+      "detail": "DERIVED: largest signature gives the cheapest spam per ledger byte"
+    },
+    {
+      "name": "drops_per_level_conversion",
+      "status": "PASS",
+      "detail": "level 256 = 10 drops; level 25600 = 1000 drops"
+    }
+  ],
+  "summary": {
+    "passed": 9,
+    "failed": 0,
+    "total": 9
+  }
+}

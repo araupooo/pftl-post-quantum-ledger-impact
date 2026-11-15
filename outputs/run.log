@@ -1,0 +1,148 @@
+===== sizes.py (exit 0) =====
+[PASS] mldsa65_signature_is_3309: FIPS 204 Table 2: ML-DSA-65 signature 3309 B
+[PASS] mldsa65_pubkey_is_1952: FIPS 204 Table 2: ML-DSA-65 public key 1952 B
+[PASS] ed25519_signature_is_64: RFC 8032 section 7: Ed25519 signature 64 B
+[PASS] slh128s_smallest_pq_signature: FIPS 205 Table 2: smallest SLH-DSA signature 7856 B
+[PASS] slh256f_largest_signature: FIPS 205 Table 2: largest SLH-DSA signature 49856 B
+[PASS] mldsa65_sig_ratio_gt_50: DERIVED: 3309/64 = 51.7x
+[PASS] mldsa65_tx_larger_than_ed25519_tx: DERIVED: model tx 5461 B vs Ed25519 297 B
+[PASS] slh256f_tx_larger_than_mldsa87_tx: DERIVED: largest SLH-DSA model tx exceeds ML-DSA-87 model tx
+[PASS] all_model_tx_positive: every model transaction exceeds the base overhead
+[PASS] whitepaper_quorum_arithmetic: DERIVED: 24 x 3309 = 79416 B (whitepaper section 1.11: 79416 B)
+
+Model transaction sizes (base overhead ASSUMED 200 B):
+  Ed25519        tx    297 B  sig    1.0x Ed25519  tx   1.0x   38491.2 MB/day at 1500 TPS
+  secp256k1      tx    297 B  sig    1.0x Ed25519  tx   1.0x   38491.2 MB/day at 1500 TPS
+  ML-DSA-44      tx   3932 B  sig   37.8x Ed25519  tx  13.2x  509587.2 MB/day at 1500 TPS
+  ML-DSA-65      tx   5461 B  sig   51.7x Ed25519  tx  18.4x  707745.6 MB/day at 1500 TPS
+  ML-DSA-87      tx   7419 B  sig   72.3x Ed25519  tx  25.0x  961502.4 MB/day at 1500 TPS
+  SLH-DSA-128s   tx   8088 B  sig  122.8x Ed25519  tx  27.2x  1048204.8 MB/day at 1500 TPS
+  SLH-DSA-128f   tx  17320 B  sig  267.0x Ed25519  tx  58.3x  2244672.0 MB/day at 1500 TPS
+  SLH-DSA-192s   tx  16472 B  sig  253.5x Ed25519  tx  55.5x  2134771.2 MB/day at 1500 TPS
+  SLH-DSA-192f   tx  35912 B  sig  557.2x Ed25519  tx 120.9x  4654195.2 MB/day at 1500 TPS
+  SLH-DSA-256s   tx  30056 B  sig  465.5x Ed25519  tx 101.2x  3895257.6 MB/day at 1500 TPS
+  SLH-DSA-256f   tx  50120 B  sig  779.0x Ed25519  tx 168.8x  6495552.0 MB/day at 1500 TPS
+
+Sizes: 10/10 checks passed
+===== bench.py (exit 0) =====
+[PASS] standin_hashing_faster_for_small_buffers: MEASURED: hashing a 64 B buffer is faster than hashing a 49856 B buffer
+[PASS] standin_all_iterations_completed: MEASURED: 2000 iterations for each of 11 schemes
+[PASS] calibrated_mldsa65_verify_0_06ms: MODEL INPUT: MDPI 2025 liboqs 0.7.2, ML-DSA-65 verify 0.06 ms
+[PASS] calibrated_mldsa44_verify_0_04ms: MODEL INPUT: cryptoai.wtf M3 Max liboqs, ML-DSA-44 verify 0.040 ms
+[PASS] ed25519_verify_derived_0_053ms: DERIVED: H33 Graviton4 ML-DSA-65 verify 24 us x 2.2 = 52.8 us
+[PASS] mldsa87_verify_unverified: UNVERIFIED: no published ML-DSA-87 verify time in the source set; excluded from model
+[PASS] slh_timing_unverified: UNVERIFIED: no published SLH-DSA verify time in the source set; excluded from model
+[PASS] model_mldsa65_verify_throughput: MODEL: 1000/0.06 = 16666.7 verifies/s/core
+[PASS] model_verify_slower_than_ed25519_derived: MODEL: calibrated ML-DSA-65 verify throughput below derived Ed25519 throughput
+[PASS] fastpay_sign_0_52ms_recorded: MODEL INPUT: PostFiat FastPay, ML-DSA-65 signing 0.52 ms (fleet hardware, CPU unspecified)
+
+Measured stand-in (hashlib.sha256 over signature-sized buffer):
+  Ed25519            64 B  median     0.63 us  (1,584,786 hashes/s)
+  secp256k1          64 B  median     0.63 us  (1,584,786 hashes/s)
+  ML-DSA-44        2420 B  median     3.15 us  (317,965 hashes/s)
+  ML-DSA-65        3309 B  median     4.10 us  (244,141 hashes/s)
+  ML-DSA-87        4627 B  median     5.54 us  (180,538 hashes/s)
+  SLH-DSA-128s     7856 B  median     8.90 us  (112,322 hashes/s)
+  SLH-DSA-128f    17088 B  median    18.74 us  (53,368 hashes/s)
+  SLH-DSA-192s    16224 B  median    17.80 us  (56,189 hashes/s)
+  SLH-DSA-192f    35664 B  median    38.66 us  (25,868 hashes/s)
+  SLH-DSA-256s    29792 B  median    32.35 us  (30,913 hashes/s)
+  SLH-DSA-256f    49856 B  median    53.76 us  (18,601 hashes/s)
+
+Calibrated MODEL verify throughput (single core, from published times):
+  Ed25519        0.053 ms  -> 18,867.9 verifies/s
+  ML-DSA-44      0.04 ms  -> 25,000.0 verifies/s
+  ML-DSA-65      0.06 ms  -> 16,666.7 verifies/s
+  ML-DSA-87      None ms  -> UNVERIFIED
+  secp256k1      None ms  -> UNVERIFIED
+
+Bench: 10/10 checks passed
+===== fees.py (exit 0) =====
+[PASS] reference_fee_is_10_drops: Config.h reference_fee{10}; xrpl.org Transaction Cost: 10 drops
+[PASS] base_fee_level_is_256: FeeEscalation.md: base fee level 256
+[PASS] no_escalation_at_or_below_limit: 50 tx at limit 50 -> level 256 (10 drops)
+[PASS] escalation_quadratic_above_limit: 100 tx at limit 50 -> level 256 x (100/50)^2 = 1024 (40 drops)
+[PASS] base_fee_identical_all_schemes: DERIVED: every scheme pays 10 drops at base load regardless of size
+[PASS] mldsa65_same_base_fee_as_ed25519: a 3309 B ML-DSA-65 signature costs the same 10 drops as a 64 B Ed25519 signature
+[PASS] mldsa65_spam_cheaper_per_mb: DERIVED: 1 MB of ledger via ML-DSA-65 costs 1,830 drops vs 33,670 drops via Ed25519
+[PASS] slh256f_spam_cheapest_per_mb: DERIVED: largest signature gives the cheapest spam per ledger byte
+[PASS] drops_per_level_conversion: level 256 = 10 drops; level 25600 = 1000 drops
+
+Base fee (all schemes, at base load): 10 drops
+Bytes per drop at base load (DERIVED):
+  Ed25519           297 B/tx     29.7 B/drop
+  secp256k1         297 B/tx     29.7 B/drop
+  ML-DSA-44        3932 B/tx    393.2 B/drop
+  ML-DSA-65        5461 B/tx    546.1 B/drop
+  ML-DSA-87        7419 B/tx    741.9 B/drop
+  SLH-DSA-128s     8088 B/tx    808.8 B/drop
+  SLH-DSA-128f    17320 B/tx   1732.0 B/drop
+  SLH-DSA-192s    16472 B/tx   1647.2 B/drop
+  SLH-DSA-192f    35912 B/tx   3591.2 B/drop
+  SLH-DSA-256s    30056 B/tx   3005.6 B/drop
+  SLH-DSA-256f    50120 B/tx   5012.0 B/drop
+
+Spam cost per 1 MB of ledger bytes at base load (DERIVED):
+  Ed25519          3367 tx    33,670 drops  (0.0337 XRP)
+  secp256k1        3367 tx    33,670 drops  (0.0337 XRP)
+  ML-DSA-44         254 tx     2,540 drops  (0.0025 XRP)
+  ML-DSA-65         183 tx     1,830 drops  (0.0018 XRP)
+  ML-DSA-87         134 tx     1,340 drops  (0.0013 XRP)
+  SLH-DSA-128s      123 tx     1,230 drops  (0.0012 XRP)
+  SLH-DSA-128f       57 tx       570 drops  (0.0006 XRP)
+  SLH-DSA-192s       60 tx       600 drops  (0.0006 XRP)
+  SLH-DSA-192f       27 tx       270 drops  (0.0003 XRP)
+  SLH-DSA-256s       33 tx       330 drops  (0.0003 XRP)
+  SLH-DSA-256f       19 tx       190 drops  (0.0002 XRP)
+
+Escalation curve (limit 50, median level 256):
+     1 tx in open ledger -> level      256.0  (10.0 drops)
+    10 tx in open ledger -> level      256.0  (10.0 drops)
+    50 tx in open ledger -> level      256.0  (10.0 drops)
+    51 tx in open ledger -> level      266.3  (10.4 drops)
+    60 tx in open ledger -> level      368.6  (14.4 drops)
+   100 tx in open ledger -> level    1,024.0  (40.0 drops)
+   200 tx in open ledger -> level    4,096.0  (160.0 drops)
+   500 tx in open ledger -> level   25,600.0  (1,000.0 drops)
+
+Fees: 9/9 checks passed
+===== mitigations.py (exit 0) =====
+[PASS] compression_mldsa65_near_zero: MEASURED: zlib-9 on 3309 B stand-in signature reduces by -0.33%
+[PASS] compression_ed25519_near_zero: MEASURED: zlib-9 on 64 B stand-in signature reduces by <1%
+[PASS] compression_deterministic: MEASURED: compression output is deterministic across runs
+[PASS] hybrid_larger_than_pure: DERIVED: every composite signature is larger than the pure ML-DSA signature
+[PASS] hybrid_mldsa65_ed25519_size: DERIVED: 3309 + 64 + 8 framing = 3381 B
+[PASS] batching_simulation_labelled: every batching figure carries the simulation-only label
+[PASS] batching_assumed_factor_0_8: STATED ASSUMPTION: amortized factor 0.8 (20% saving), not a measured gain
+[PASS] bls_rejected: BLS aggregation explicitly rejected: pairing-based, broken by Shor
+[PASS] pq_aggregation_rejected: post-quantum aggregation explicitly rejected: no standardized scheme
+
+Compression (MEASURED, zlib-9 on deterministic stand-in signature bytes):
+  Ed25519            64 B ->     75 B  (-17.19%)
+  secp256k1          64 B ->     75 B  (-17.19%)
+  ML-DSA-44        2420 B ->   2431 B  (-0.45%)
+  ML-DSA-65        3309 B ->   3320 B  (-0.33%)
+  ML-DSA-87        4627 B ->   4638 B  (-0.24%)
+  SLH-DSA-128s     7856 B ->   7867 B  (-0.14%)
+  SLH-DSA-128f    17088 B ->  17104 B  (-0.09%)
+  SLH-DSA-192s    16224 B ->  16235 B  (-0.07%)
+  SLH-DSA-192f    35664 B ->  35685 B  (-0.06%)
+  SLH-DSA-256s    29792 B ->  29808 B  (-0.05%)
+  SLH-DSA-256f    49856 B ->  49882 B  (-0.05%)
+
+Hybrid/composite signature sizes (DERIVED arithmetic):
+  ML-DSA-44+Ed25519      2492 B  (1.030x pure ML-DSA, +72 B)
+  ML-DSA-44+secp256k1    2492 B  (1.030x pure ML-DSA, +72 B)
+  ML-DSA-65+Ed25519      3381 B  (1.022x pure ML-DSA, +72 B)
+  ML-DSA-65+secp256k1    3381 B  (1.022x pure ML-DSA, +72 B)
+  ML-DSA-87+Ed25519      4699 B  (1.016x pure ML-DSA, +72 B)
+  ML-DSA-87+secp256k1    4699 B  (1.016x pure ML-DSA, +72 B)
+
+Batching (SIMULATION ONLY, assumed 0.8x amortized factor):
+  Ed25519        18,868 -> 23,585 verifies/s/core (simulated)
+  ML-DSA-44      25,000 -> 31,250 verifies/s/core (simulated)
+  ML-DSA-65      16,667 -> 20,833 verifies/s/core (simulated)
+
+Mitigations: 9/9 checks passed
+
+===== run summary: 38/38 checks passed, 0 failed, overall PASS =====

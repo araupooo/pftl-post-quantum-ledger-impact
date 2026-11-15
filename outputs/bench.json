@@ -1,0 +1,231 @@
+{
+  "environment": {
+    "python": "3.12.3",
+    "python_full": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "platform": "Linux-7.0.0-44-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "cpu_count_logical": 4,
+    "timing": "time.perf_counter_ns",
+    "warmup": 200,
+    "iterations": 2000
+  },
+  "methodology": "Stand-in hashing is MEASURED on this machine. Per-operation sign/verify times are a CALIBRATED MODEL from published measurements (sources.md section 7); no native ML-DSA library was run and no library timing was fabricated. Throughput figures are MODEL throughput, single core, derived as 1000 / verify_ms.",
+  "measured_standin_hashing": {
+    "Ed25519": {
+      "signature_bytes": 64,
+      "median_s": 6.31e-07,
+      "min_s": 6.01e-07,
+      "max_s": 1.7586e-05,
+      "mean_s": 6.667279999999999e-07,
+      "iterations": 2000,
+      "warmup": 200,
+      "hashes_per_second_median": 1584786.1
+    },
+    "secp256k1": {
+      "signature_bytes": 64,
+      "median_s": 6.31e-07,
+      "min_s": 6.1e-07,
+      "max_s": 1.7096e-05,
+      "mean_s": 6.59154e-07,
+      "iterations": 2000,
+      "warmup": 200,
+      "hashes_per_second_median": 1584786.1
+    },
+    "ML-DSA-44": {
+      "signature_bytes": 2420,
+      "median_s": 3.145e-06,
+      "min_s": 3.114e-06,
+      "max_s": 0.00010677,
+      "mean_s": 3.3305095e-06,
+      "iterations": 2000,
+      "warmup": 200,
+      "hashes_per_second_median": 317965.0
+    },
+    "ML-DSA-65": {
+      "signature_bytes": 3309,
+      "median_s": 4.096e-06,
+      "min_s": 4.057e-06,
+      "max_s": 3.8968e-05,
+      "mean_s": 4.237378e-06,
+      "iterations": 2000,
+      "warmup": 200,
+      "hashes_per_second_median": 244140.6
+    },
+    "ML-DSA-87": {
+      "signature_bytes": 4627,
+      "median_s": 5.539e-06,
+      "min_s": 5.498e-06,
+      "max_s": 8.2184e-05,
+      "mean_s": 5.8071505e-06,
+      "iterations": 2000,
+      "warmup": 200,
+      "hashes_per_second_median": 180538.0
+    },
+    "SLH-DSA-128s": {
+      "signature_bytes": 7856,
+      "median_s": 8.903e-06,
+      "min_s": 8.873e-06,
+      "max_s": 0.000448223,
+      "mean_s": 9.8961415e-06,
+      "iterations": 2000,
+      "warmup": 200,
+      "hashes_per_second_median": 112321.7
+    },
+    "SLH-DSA-128f": {
+      "signature_bytes": 17088,
+      "median_s": 1.8738e-05,
+      "min_s": 1.8688e-05,
+      "max_s": 0.000197146,
+      "mean_s": 1.98991695e-05,
+      "iterations": 2000,
+      "warmup": 200,
+      "hashes_per_second_median": 53367.5
+    },
+    "SLH-DSA-192s": {
+      "signature_bytes": 16224,
+      "median_s": 1.7797e-05,
+      "min_s": 1.7747e-05,
+      "max_s": 0.000402114,
+      "mean_s": 1.87996545e-05,
+      "iterations": 2000,
+      "warmup": 200,
+      "hashes_per_second_median": 56189.2
+    },
+    "SLH-DSA-192f": {
+      "signature_bytes": 35664,
+      "median_s": 3.8658e-05,
+      "min_s": 3.8588e-05,
+      "max_s": 0.000251678,
+      "mean_s": 4.2042343e-05,
+      "iterations": 2000,
+      "warmup": 200,
+      "hashes_per_second_median": 25867.9
+    },
+    "SLH-DSA-256s": {
+      "signature_bytes": 29792,
+      "median_s": 3.2349e-05,
+      "min_s": 3.2288e-05,
+      "max_s": 0.000487002,
+      "mean_s": 3.3466776e-05,
+      "iterations": 2000,
+      "warmup": 200,
+      "hashes_per_second_median": 30912.9
+    },
+    "SLH-DSA-256f": {
+      "signature_bytes": 49856,
+      "median_s": 5.376e-05,
+      "min_s": 5.34e-05,
+      "max_s": 0.001195705,
+      "mean_s": 5.66177905e-05,
+      "iterations": 2000,
+      "warmup": 200,
+      "hashes_per_second_median": 18601.2
+    }
+  },
+  "calibrated_verify_model": {
+    "Ed25519": {
+      "verify_ms": 0.053,
+      "status": "MODEL (calibrated from published measurement)",
+      "verify_per_second_single_core_model": 18867.9
+    },
+    "ML-DSA-44": {
+      "verify_ms": 0.04,
+      "status": "MODEL (calibrated from published measurement)",
+      "verify_per_second_single_core_model": 25000.0
+    },
+    "ML-DSA-65": {
+      "verify_ms": 0.06,
+      "status": "MODEL (calibrated from published measurement)",
+      "verify_per_second_single_core_model": 16666.7
+    },
+    "ML-DSA-87": {
+      "verify_ms": null,
+      "status": "UNVERIFIED: no published verify time in source set",
+      "verify_per_second_single_core_model": null
+    },
+    "secp256k1": {
+      "verify_ms": null,
+      "status": "UNVERIFIED: no published verify time in source set",
+      "verify_per_second_single_core_model": null
+    }
+  },
+  "calibrated_sign_model": {
+    "ML-DSA-44": {
+      "sign_ms": 0.165,
+      "sign_per_second_single_core_model": 6060.6,
+      "status": "MODEL (calibrated from published measurement)"
+    },
+    "ML-DSA-65": {
+      "sign_ms": 0.11,
+      "sign_per_second_single_core_model": 9090.9,
+      "status": "MODEL (calibrated from published measurement)"
+    },
+    "ML-DSA-65-fastpay": {
+      "sign_ms": 0.52,
+      "sign_per_second_single_core_model": 1923.1,
+      "status": "MODEL (calibrated from published measurement)"
+    },
+    "ML-DSA-87": {
+      "sign_ms": null,
+      "status": "UNVERIFIED"
+    }
+  },
+  "checks": [
+    {
+      "name": "standin_hashing_faster_for_small_buffers",
+      "status": "PASS",
+      "detail": "MEASURED: hashing a 64 B buffer is faster than hashing a 49856 B buffer"
+    },
+    {
+      "name": "standin_all_iterations_completed",
+      "status": "PASS",
+      "detail": "MEASURED: 2000 iterations for each of 11 schemes"
+    },
+    {
+      "name": "calibrated_mldsa65_verify_0_06ms",
+      "status": "PASS",
+      "detail": "MODEL INPUT: MDPI 2025 liboqs 0.7.2, ML-DSA-65 verify 0.06 ms"
+    },
+    {
+      "name": "calibrated_mldsa44_verify_0_04ms",
+      "status": "PASS",
+      "detail": "MODEL INPUT: cryptoai.wtf M3 Max liboqs, ML-DSA-44 verify 0.040 ms"
+    },
+    {
+      "name": "ed25519_verify_derived_0_053ms",
+      "status": "PASS",
+      "detail": "DERIVED: H33 Graviton4 ML-DSA-65 verify 24 us x 2.2 = 52.8 us"
+    },
+    {
+      "name": "mldsa87_verify_unverified",
+      "status": "PASS",
+      "detail": "UNVERIFIED: no published ML-DSA-87 verify time in the source set; excluded from model"
+    },
+    {
+      "name": "slh_timing_unverified",
+      "status": "PASS",
+      "detail": "UNVERIFIED: no published SLH-DSA verify time in the source set; excluded from model"
+    },
+    {
+      "name": "model_mldsa65_verify_throughput",
+      "status": "PASS",
+      "detail": "MODEL: 1000/0.06 = 16666.7 verifies/s/core"
+    },
+    {
+      "name": "model_verify_slower_than_ed25519_derived",
+      "status": "PASS",
+      "detail": "MODEL: calibrated ML-DSA-65 verify throughput below derived Ed25519 throughput"
+    },
+    {
+      "name": "fastpay_sign_0_52ms_recorded",
+      "status": "PASS",
+      "detail": "MODEL INPUT: PostFiat FastPay, ML-DSA-65 signing 0.52 ms (fleet hardware, CPU unspecified)"
+    }
+  ],
+  "summary": {
+    "passed": 10,
+    "failed": 0,
+    "total": 10
+  }
+}

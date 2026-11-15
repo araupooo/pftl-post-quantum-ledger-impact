@@ -1,0 +1,48 @@
+[PASS] reference_fee_is_10_drops: Config.h reference_fee{10}; xrpl.org Transaction Cost: 10 drops
+[PASS] base_fee_level_is_256: FeeEscalation.md: base fee level 256
+[PASS] no_escalation_at_or_below_limit: 50 tx at limit 50 -> level 256 (10 drops)
+[PASS] escalation_quadratic_above_limit: 100 tx at limit 50 -> level 256 x (100/50)^2 = 1024 (40 drops)
+[PASS] base_fee_identical_all_schemes: DERIVED: every scheme pays 10 drops at base load regardless of size
+[PASS] mldsa65_same_base_fee_as_ed25519: a 3309 B ML-DSA-65 signature costs the same 10 drops as a 64 B Ed25519 signature
+[PASS] mldsa65_spam_cheaper_per_mb: DERIVED: 1 MB of ledger via ML-DSA-65 costs 1,830 drops vs 33,670 drops via Ed25519
+[PASS] slh256f_spam_cheapest_per_mb: DERIVED: largest signature gives the cheapest spam per ledger byte
+[PASS] drops_per_level_conversion: level 256 = 10 drops; level 25600 = 1000 drops
+
+Base fee (all schemes, at base load): 10 drops
+Bytes per drop at base load (DERIVED):
+  Ed25519           297 B/tx     29.7 B/drop
+  secp256k1         297 B/tx     29.7 B/drop
+  ML-DSA-44        3932 B/tx    393.2 B/drop
+  ML-DSA-65        5461 B/tx    546.1 B/drop
+  ML-DSA-87        7419 B/tx    741.9 B/drop
+  SLH-DSA-128s     8088 B/tx    808.8 B/drop
+  SLH-DSA-128f    17320 B/tx   1732.0 B/drop
+  SLH-DSA-192s    16472 B/tx   1647.2 B/drop
+  SLH-DSA-192f    35912 B/tx   3591.2 B/drop
+  SLH-DSA-256s    30056 B/tx   3005.6 B/drop
+  SLH-DSA-256f    50120 B/tx   5012.0 B/drop
+
+Spam cost per 1 MB of ledger bytes at base load (DERIVED):
+  Ed25519          3367 tx    33,670 drops  (0.0337 XRP)
+  secp256k1        3367 tx    33,670 drops  (0.0337 XRP)
+  ML-DSA-44         254 tx     2,540 drops  (0.0025 XRP)
+  ML-DSA-65         183 tx     1,830 drops  (0.0018 XRP)
+  ML-DSA-87         134 tx     1,340 drops  (0.0013 XRP)
+  SLH-DSA-128s      123 tx     1,230 drops  (0.0012 XRP)
+  SLH-DSA-128f       57 tx       570 drops  (0.0006 XRP)
+  SLH-DSA-192s       60 tx       600 drops  (0.0006 XRP)
+  SLH-DSA-192f       27 tx       270 drops  (0.0003 XRP)
+  SLH-DSA-256s       33 tx       330 drops  (0.0003 XRP)
+  SLH-DSA-256f       19 tx       190 drops  (0.0002 XRP)
+
+Escalation curve (limit 50, median level 256):
+     1 tx in open ledger -> level      256.0  (10.0 drops)
+    10 tx in open ledger -> level      256.0  (10.0 drops)
+    50 tx in open ledger -> level      256.0  (10.0 drops)
+    51 tx in open ledger -> level      266.3  (10.4 drops)
+    60 tx in open ledger -> level      368.6  (14.4 drops)
+   100 tx in open ledger -> level    1,024.0  (40.0 drops)
+   200 tx in open ledger -> level    4,096.0  (160.0 drops)
+   500 tx in open ledger -> level   25,600.0  (1,000.0 drops)
+
+Fees: 9/9 checks passed

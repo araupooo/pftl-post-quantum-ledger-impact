@@ -1,0 +1,270 @@
+{
+  "compression_measured": {
+    "Ed25519": {
+      "signature_bytes": 64,
+      "zlib_level_1_bytes": 75,
+      "zlib_level_1_reduction_pct": -17.19,
+      "zlib_level_6_bytes": 75,
+      "zlib_level_6_reduction_pct": -17.19,
+      "zlib_level_9_bytes": 75,
+      "zlib_level_9_reduction_pct": -17.19
+    },
+    "secp256k1": {
+      "signature_bytes": 64,
+      "zlib_level_1_bytes": 75,
+      "zlib_level_1_reduction_pct": -17.19,
+      "zlib_level_6_bytes": 75,
+      "zlib_level_6_reduction_pct": -17.19,
+      "zlib_level_9_bytes": 75,
+      "zlib_level_9_reduction_pct": -17.19
+    },
+    "ML-DSA-44": {
+      "signature_bytes": 2420,
+      "zlib_level_1_bytes": 2431,
+      "zlib_level_1_reduction_pct": -0.45,
+      "zlib_level_6_bytes": 2431,
+      "zlib_level_6_reduction_pct": -0.45,
+      "zlib_level_9_bytes": 2431,
+      "zlib_level_9_reduction_pct": -0.45
+    },
+    "ML-DSA-65": {
+      "signature_bytes": 3309,
+      "zlib_level_1_bytes": 3320,
+      "zlib_level_1_reduction_pct": -0.33,
+      "zlib_level_6_bytes": 3320,
+      "zlib_level_6_reduction_pct": -0.33,
+      "zlib_level_9_bytes": 3320,
+      "zlib_level_9_reduction_pct": -0.33
+    },
+    "ML-DSA-87": {
+      "signature_bytes": 4627,
+      "zlib_level_1_bytes": 4638,
+      "zlib_level_1_reduction_pct": -0.24,
+      "zlib_level_6_bytes": 4638,
+      "zlib_level_6_reduction_pct": -0.24,
+      "zlib_level_9_bytes": 4638,
+      "zlib_level_9_reduction_pct": -0.24
+    },
+    "SLH-DSA-128s": {
+      "signature_bytes": 7856,
+      "zlib_level_1_bytes": 7867,
+      "zlib_level_1_reduction_pct": -0.14,
+      "zlib_level_6_bytes": 7867,
+      "zlib_level_6_reduction_pct": -0.14,
+      "zlib_level_9_bytes": 7867,
+      "zlib_level_9_reduction_pct": -0.14
+    },
+    "SLH-DSA-128f": {
+      "signature_bytes": 17088,
+      "zlib_level_1_bytes": 17104,
+      "zlib_level_1_reduction_pct": -0.09,
+      "zlib_level_6_bytes": 17104,
+      "zlib_level_6_reduction_pct": -0.09,
+      "zlib_level_9_bytes": 17104,
+      "zlib_level_9_reduction_pct": -0.09
+    },
+    "SLH-DSA-192s": {
+      "signature_bytes": 16224,
+      "zlib_level_1_bytes": 16235,
+      "zlib_level_1_reduction_pct": -0.07,
+      "zlib_level_6_bytes": 16235,
+      "zlib_level_6_reduction_pct": -0.07,
+      "zlib_level_9_bytes": 16235,
+      "zlib_level_9_reduction_pct": -0.07
+    },
+    "SLH-DSA-192f": {
+      "signature_bytes": 35664,
+      "zlib_level_1_bytes": 35685,
+      "zlib_level_1_reduction_pct": -0.06,
+      "zlib_level_6_bytes": 35685,
+      "zlib_level_6_reduction_pct": -0.06,
+      "zlib_level_9_bytes": 35685,
+      "zlib_level_9_reduction_pct": -0.06
+    },
+    "SLH-DSA-256s": {
+      "signature_bytes": 29792,
+      "zlib_level_1_bytes": 29808,
+      "zlib_level_1_reduction_pct": -0.05,
+      "zlib_level_6_bytes": 29808,
+      "zlib_level_6_reduction_pct": -0.05,
+      "zlib_level_9_bytes": 29808,
+      "zlib_level_9_reduction_pct": -0.05
+    },
+    "SLH-DSA-256f": {
+      "signature_bytes": 49856,
+      "zlib_level_1_bytes": 49882,
+      "zlib_level_1_reduction_pct": -0.05,
+      "zlib_level_6_bytes": 49882,
+      "zlib_level_6_reduction_pct": -0.05,
+      "zlib_level_9_bytes": 49882,
+      "zlib_level_9_reduction_pct": -0.05
+    }
+  },
+  "hybrid_sizing": {
+    "ML-DSA-44+Ed25519": {
+      "composite_signature_bytes": 2492,
+      "composite_public_key_bytes": 1353,
+      "pure_pq_signature_bytes": 2420,
+      "extra_bytes_vs_pure_pq": 72,
+      "ratio_vs_pure_pq": 1.03,
+      "framing_bytes_assumed": 8
+    },
+    "ML-DSA-44+secp256k1": {
+      "composite_signature_bytes": 2492,
+      "composite_public_key_bytes": 1353,
+      "pure_pq_signature_bytes": 2420,
+      "extra_bytes_vs_pure_pq": 72,
+      "ratio_vs_pure_pq": 1.03,
+      "framing_bytes_assumed": 8
+    },
+    "ML-DSA-65+Ed25519": {
+      "composite_signature_bytes": 3381,
+      "composite_public_key_bytes": 1993,
+      "pure_pq_signature_bytes": 3309,
+      "extra_bytes_vs_pure_pq": 72,
+      "ratio_vs_pure_pq": 1.022,
+      "framing_bytes_assumed": 8
+    },
+    "ML-DSA-65+secp256k1": {
+      "composite_signature_bytes": 3381,
+      "composite_public_key_bytes": 1993,
+      "pure_pq_signature_bytes": 3309,
+      "extra_bytes_vs_pure_pq": 72,
+      "ratio_vs_pure_pq": 1.022,
+      "framing_bytes_assumed": 8
+    },
+    "ML-DSA-87+Ed25519": {
+      "composite_signature_bytes": 4699,
+      "composite_public_key_bytes": 2633,
+      "pure_pq_signature_bytes": 4627,
+      "extra_bytes_vs_pure_pq": 72,
+      "ratio_vs_pure_pq": 1.016,
+      "framing_bytes_assumed": 8
+    },
+    "ML-DSA-87+secp256k1": {
+      "composite_signature_bytes": 4699,
+      "composite_public_key_bytes": 2633,
+      "pure_pq_signature_bytes": 4627,
+      "extra_bytes_vs_pure_pq": 72,
+      "ratio_vs_pure_pq": 1.016,
+      "framing_bytes_assumed": 8
+    }
+  },
+  "batching_simulation_only": {
+    "Ed25519": {
+      "single_verify_ms_model": 0.053,
+      "amortized_factor_assumed": 0.8,
+      "batched_verify_ms_simulated": 0.0424,
+      "throughput_single_model": 18867.9,
+      "throughput_batched_simulated": 23584.9,
+      "status": "SIMULATION ONLY: FIPS 204 specifies single-signature verification only; no batch procedure is standardized."
+    },
+    "ML-DSA-44": {
+      "single_verify_ms_model": 0.04,
+      "amortized_factor_assumed": 0.8,
+      "batched_verify_ms_simulated": 0.032,
+      "throughput_single_model": 25000.0,
+      "throughput_batched_simulated": 31250.0,
+      "status": "SIMULATION ONLY: FIPS 204 specifies single-signature verification only; no batch procedure is standardized."
+    },
+    "ML-DSA-65": {
+      "single_verify_ms_model": 0.06,
+      "amortized_factor_assumed": 0.8,
+      "batched_verify_ms_simulated": 0.048,
+      "throughput_single_model": 16666.7,
+      "throughput_batched_simulated": 20833.3,
+      "status": "SIMULATION ONLY: FIPS 204 specifies single-signature verification only; no batch procedure is standardized."
+    }
+  },
+  "parallel_model": {
+    "Ed25519": {
+      "verify_ms_model": 0.053,
+      "cores": 4,
+      "verifies_per_second_model": 75471.7,
+      "status": "MODEL: linear scaling with cores is an assumption, not a measured validator result."
+    },
+    "ML-DSA-44": {
+      "verify_ms_model": 0.04,
+      "cores": 4,
+      "verifies_per_second_model": 100000.0,
+      "status": "MODEL: linear scaling with cores is an assumption, not a measured validator result."
+    },
+    "ML-DSA-65": {
+      "verify_ms_model": 0.06,
+      "cores": 4,
+      "verifies_per_second_model": 66666.7,
+      "status": "MODEL: linear scaling with cores is an assumption, not a measured validator result."
+    }
+  },
+  "rejected": {
+    "BLS_aggregation": {
+      "reason": "BLS rests on elliptic-curve pairings (BLS12-381); Shor's algorithm breaks elliptic-curve discrete logarithms, so BLS offers no quantum resistance. RFC 9591.",
+      "contrast_aggregate_bytes": 96,
+      "verdict": "REJECTED as a post-quantum mitigation."
+    },
+    "pq_aggregation": {
+      "reason": "No post-quantum signature aggregation scheme is a NIST standard; ML-DSA and SLH-DSA have no standardized aggregate form. Any proposal is research-stage.",
+      "verdict": "REJECTED as an available mitigation (no deployable construction)."
+    },
+    "batch_verification": {
+      "reason": "FIPS 204 section 5.3 specifies single-signature verification only; no batch-verification procedure is specified. FIPS 205 likewise.",
+      "verdict": "REJECTED as a standardized mechanism; batching figures in this pack are simulation-only with a stated assumption."
+    },
+    "signature_compression_standard": {
+      "reason": "No standardized compression for ML-DSA signatures exists in FIPS 204; signatures are near-maximally compressed lattice vectors. See measured zlib results (~0%).",
+      "verdict": "REJECTED as an available mitigation; compression measured, not assumed."
+    }
+  },
+  "checks": [
+    {
+      "name": "compression_mldsa65_near_zero",
+      "status": "PASS",
+      "detail": "MEASURED: zlib-9 on 3309 B stand-in signature reduces by -0.33%"
+    },
+    {
+      "name": "compression_ed25519_near_zero",
+      "status": "PASS",
+      "detail": "MEASURED: zlib-9 on 64 B stand-in signature reduces by <1%"
+    },
+    {
+      "name": "compression_deterministic",
+      "status": "PASS",
+      "detail": "MEASURED: compression output is deterministic across runs"
+    },
+    {
+      "name": "hybrid_larger_than_pure",
+      "status": "PASS",
+      "detail": "DERIVED: every composite signature is larger than the pure ML-DSA signature"
+    },
+    {
+      "name": "hybrid_mldsa65_ed25519_size",
+      "status": "PASS",
+      "detail": "DERIVED: 3309 + 64 + 8 framing = 3381 B"
+    },
+    {
+      "name": "batching_simulation_labelled",
+      "status": "PASS",
+      "detail": "every batching figure carries the simulation-only label"
+    },
+    {
+      "name": "batching_assumed_factor_0_8",
+      "status": "PASS",
+      "detail": "STATED ASSUMPTION: amortized factor 0.8 (20% saving), not a measured gain"
+    },
+    {
+      "name": "bls_rejected",
+      "status": "PASS",
+      "detail": "BLS aggregation explicitly rejected: pairing-based, broken by Shor"
+    },
+    {
+      "name": "pq_aggregation_rejected",
+      "status": "PASS",
+      "detail": "post-quantum aggregation explicitly rejected: no standardized scheme"
+    }
+  ],
+  "summary": {
+    "passed": 9,
+    "failed": 0,
+    "total": 9
+  }
+}

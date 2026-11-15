@@ -1,0 +1,32 @@
+[PASS] standin_hashing_faster_for_small_buffers: MEASURED: hashing a 64 B buffer is faster than hashing a 49856 B buffer
+[PASS] standin_all_iterations_completed: MEASURED: 2000 iterations for each of 11 schemes
+[PASS] calibrated_mldsa65_verify_0_06ms: MODEL INPUT: MDPI 2025 liboqs 0.7.2, ML-DSA-65 verify 0.06 ms
+[PASS] calibrated_mldsa44_verify_0_04ms: MODEL INPUT: cryptoai.wtf M3 Max liboqs, ML-DSA-44 verify 0.040 ms
+[PASS] ed25519_verify_derived_0_053ms: DERIVED: H33 Graviton4 ML-DSA-65 verify 24 us x 2.2 = 52.8 us
+[PASS] mldsa87_verify_unverified: UNVERIFIED: no published ML-DSA-87 verify time in the source set; excluded from model
+[PASS] slh_timing_unverified: UNVERIFIED: no published SLH-DSA verify time in the source set; excluded from model
+[PASS] model_mldsa65_verify_throughput: MODEL: 1000/0.06 = 16666.7 verifies/s/core
+[PASS] model_verify_slower_than_ed25519_derived: MODEL: calibrated ML-DSA-65 verify throughput below derived Ed25519 throughput
+[PASS] fastpay_sign_0_52ms_recorded: MODEL INPUT: PostFiat FastPay, ML-DSA-65 signing 0.52 ms (fleet hardware, CPU unspecified)
+
+Measured stand-in (hashlib.sha256 over signature-sized buffer):
+  Ed25519            64 B  median     0.63 us  (1,584,786 hashes/s)
+  secp256k1          64 B  median     0.63 us  (1,584,786 hashes/s)
+  ML-DSA-44        2420 B  median     3.15 us  (317,965 hashes/s)
+  ML-DSA-65        3309 B  median     4.10 us  (244,141 hashes/s)
+  ML-DSA-87        4627 B  median     5.54 us  (180,538 hashes/s)
+  SLH-DSA-128s     7856 B  median     8.90 us  (112,322 hashes/s)
+  SLH-DSA-128f    17088 B  median    18.74 us  (53,368 hashes/s)
+  SLH-DSA-192s    16224 B  median    17.80 us  (56,189 hashes/s)
+  SLH-DSA-192f    35664 B  median    38.66 us  (25,868 hashes/s)
+  SLH-DSA-256s    29792 B  median    32.35 us  (30,913 hashes/s)
+  SLH-DSA-256f    49856 B  median    53.76 us  (18,601 hashes/s)
+
+Calibrated MODEL verify throughput (single core, from published times):
+  Ed25519        0.053 ms  -> 18,867.9 verifies/s
+  ML-DSA-44      0.04 ms  -> 25,000.0 verifies/s
+  ML-DSA-65      0.06 ms  -> 16,666.7 verifies/s
+  ML-DSA-87      None ms  -> UNVERIFIED
+  secp256k1      None ms  -> UNVERIFIED
+
+Bench: 10/10 checks passed

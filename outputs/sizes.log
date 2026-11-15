@@ -1,0 +1,25 @@
+[PASS] mldsa65_signature_is_3309: FIPS 204 Table 2: ML-DSA-65 signature 3309 B
+[PASS] mldsa65_pubkey_is_1952: FIPS 204 Table 2: ML-DSA-65 public key 1952 B
+[PASS] ed25519_signature_is_64: RFC 8032 section 7: Ed25519 signature 64 B
+[PASS] slh128s_smallest_pq_signature: FIPS 205 Table 2: smallest SLH-DSA signature 7856 B
+[PASS] slh256f_largest_signature: FIPS 205 Table 2: largest SLH-DSA signature 49856 B
+[PASS] mldsa65_sig_ratio_gt_50: DERIVED: 3309/64 = 51.7x
+[PASS] mldsa65_tx_larger_than_ed25519_tx: DERIVED: model tx 5461 B vs Ed25519 297 B
+[PASS] slh256f_tx_larger_than_mldsa87_tx: DERIVED: largest SLH-DSA model tx exceeds ML-DSA-87 model tx
+[PASS] all_model_tx_positive: every model transaction exceeds the base overhead
+[PASS] whitepaper_quorum_arithmetic: DERIVED: 24 x 3309 = 79416 B (whitepaper section 1.11: 79416 B)
+
+Model transaction sizes (base overhead ASSUMED 200 B):
+  Ed25519        tx    297 B  sig    1.0x Ed25519  tx   1.0x   38491.2 MB/day at 1500 TPS
+  secp256k1      tx    297 B  sig    1.0x Ed25519  tx   1.0x   38491.2 MB/day at 1500 TPS
+  ML-DSA-44      tx   3932 B  sig   37.8x Ed25519  tx  13.2x  509587.2 MB/day at 1500 TPS
+  ML-DSA-65      tx   5461 B  sig   51.7x Ed25519  tx  18.4x  707745.6 MB/day at 1500 TPS
+  ML-DSA-87      tx   7419 B  sig   72.3x Ed25519  tx  25.0x  961502.4 MB/day at 1500 TPS
+  SLH-DSA-128s   tx   8088 B  sig  122.8x Ed25519  tx  27.2x  1048204.8 MB/day at 1500 TPS
+  SLH-DSA-128f   tx  17320 B  sig  267.0x Ed25519  tx  58.3x  2244672.0 MB/day at 1500 TPS
+  SLH-DSA-192s   tx  16472 B  sig  253.5x Ed25519  tx  55.5x  2134771.2 MB/day at 1500 TPS
+  SLH-DSA-192f   tx  35912 B  sig  557.2x Ed25519  tx 120.9x  4654195.2 MB/day at 1500 TPS
+  SLH-DSA-256s   tx  30056 B  sig  465.5x Ed25519  tx 101.2x  3895257.6 MB/day at 1500 TPS
+  SLH-DSA-256f   tx  50120 B  sig  779.0x Ed25519  tx 168.8x  6495552.0 MB/day at 1500 TPS
+
+Sizes: 10/10 checks passed

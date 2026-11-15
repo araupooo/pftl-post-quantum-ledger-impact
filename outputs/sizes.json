@@ -1,0 +1,281 @@
+{
+  "base_tx_bytes_assumed": 200,
+  "workload": {
+    "max_tps_assumed": 1500,
+    "ledger_close_seconds": 4.0
+  },
+  "schemes": {
+    "Ed25519": {
+      "public_key_bytes": 32,
+      "public_key_wire_bytes": 33,
+      "signature_bytes": 64,
+      "model_tx_bytes": 297,
+      "security": "128-bit (RFC 8032, section 1)"
+    },
+    "secp256k1": {
+      "public_key_bytes": 33,
+      "public_key_wire_bytes": 33,
+      "signature_bytes": 64,
+      "model_tx_bytes": 297,
+      "security": "128-bit ECDSA (compact r||s; DER form 68-72 B)"
+    },
+    "ML-DSA-44": {
+      "public_key_bytes": 1312,
+      "public_key_wire_bytes": 1312,
+      "signature_bytes": 2420,
+      "model_tx_bytes": 3932,
+      "security": "FIPS 204 category 2"
+    },
+    "ML-DSA-65": {
+      "public_key_bytes": 1952,
+      "public_key_wire_bytes": 1952,
+      "signature_bytes": 3309,
+      "model_tx_bytes": 5461,
+      "security": "FIPS 204 category 3"
+    },
+    "ML-DSA-87": {
+      "public_key_bytes": 2592,
+      "public_key_wire_bytes": 2592,
+      "signature_bytes": 4627,
+      "model_tx_bytes": 7419,
+      "security": "FIPS 204 category 5"
+    },
+    "SLH-DSA-128s": {
+      "public_key_bytes": 32,
+      "public_key_wire_bytes": 32,
+      "signature_bytes": 7856,
+      "model_tx_bytes": 8088,
+      "security": "FIPS 205 category 1"
+    },
+    "SLH-DSA-128f": {
+      "public_key_bytes": 32,
+      "public_key_wire_bytes": 32,
+      "signature_bytes": 17088,
+      "model_tx_bytes": 17320,
+      "security": "FIPS 205 category 1"
+    },
+    "SLH-DSA-192s": {
+      "public_key_bytes": 48,
+      "public_key_wire_bytes": 48,
+      "signature_bytes": 16224,
+      "model_tx_bytes": 16472,
+      "security": "FIPS 205 category 3"
+    },
+    "SLH-DSA-192f": {
+      "public_key_bytes": 48,
+      "public_key_wire_bytes": 48,
+      "signature_bytes": 35664,
+      "model_tx_bytes": 35912,
+      "security": "FIPS 205 category 3"
+    },
+    "SLH-DSA-256s": {
+      "public_key_bytes": 64,
+      "public_key_wire_bytes": 64,
+      "signature_bytes": 29792,
+      "model_tx_bytes": 30056,
+      "security": "FIPS 205 category 5"
+    },
+    "SLH-DSA-256f": {
+      "public_key_bytes": 64,
+      "public_key_wire_bytes": 64,
+      "signature_bytes": 49856,
+      "model_tx_bytes": 50120,
+      "security": "FIPS 205 category 5"
+    }
+  },
+  "ratios": {
+    "Ed25519": {
+      "signature_ratio_vs_ed25519": 1.0,
+      "tx_ratio_vs_ed25519": 1.0
+    },
+    "secp256k1": {
+      "signature_ratio_vs_ed25519": 1.0,
+      "tx_ratio_vs_ed25519": 1.0
+    },
+    "ML-DSA-44": {
+      "signature_ratio_vs_ed25519": 37.81,
+      "tx_ratio_vs_ed25519": 13.24
+    },
+    "ML-DSA-65": {
+      "signature_ratio_vs_ed25519": 51.7,
+      "tx_ratio_vs_ed25519": 18.39
+    },
+    "ML-DSA-87": {
+      "signature_ratio_vs_ed25519": 72.3,
+      "tx_ratio_vs_ed25519": 24.98
+    },
+    "SLH-DSA-128s": {
+      "signature_ratio_vs_ed25519": 122.75,
+      "tx_ratio_vs_ed25519": 27.23
+    },
+    "SLH-DSA-128f": {
+      "signature_ratio_vs_ed25519": 267.0,
+      "tx_ratio_vs_ed25519": 58.32
+    },
+    "SLH-DSA-192s": {
+      "signature_ratio_vs_ed25519": 253.5,
+      "tx_ratio_vs_ed25519": 55.46
+    },
+    "SLH-DSA-192f": {
+      "signature_ratio_vs_ed25519": 557.25,
+      "tx_ratio_vs_ed25519": 120.92
+    },
+    "SLH-DSA-256s": {
+      "signature_ratio_vs_ed25519": 465.5,
+      "tx_ratio_vs_ed25519": 101.2
+    },
+    "SLH-DSA-256f": {
+      "signature_ratio_vs_ed25519": 779.0,
+      "tx_ratio_vs_ed25519": 168.75
+    }
+  },
+  "ledger_growth": {
+    "Ed25519": {
+      "model_tx_bytes": 297,
+      "bytes_per_ledger_4s_at_1500tps": 1782000.0,
+      "bytes_per_day_at_1500tps": 38491200000,
+      "signature_bytes_per_day_at_1500tps": 8294400000,
+      "mb_per_day_at_1500tps": 38491.2,
+      "sig_mb_per_day_at_1500tps": 8294.4
+    },
+    "secp256k1": {
+      "model_tx_bytes": 297,
+      "bytes_per_ledger_4s_at_1500tps": 1782000.0,
+      "bytes_per_day_at_1500tps": 38491200000,
+      "signature_bytes_per_day_at_1500tps": 8294400000,
+      "mb_per_day_at_1500tps": 38491.2,
+      "sig_mb_per_day_at_1500tps": 8294.4
+    },
+    "ML-DSA-44": {
+      "model_tx_bytes": 3932,
+      "bytes_per_ledger_4s_at_1500tps": 23592000.0,
+      "bytes_per_day_at_1500tps": 509587200000,
+      "signature_bytes_per_day_at_1500tps": 313632000000,
+      "mb_per_day_at_1500tps": 509587.2,
+      "sig_mb_per_day_at_1500tps": 313632.0
+    },
+    "ML-DSA-65": {
+      "model_tx_bytes": 5461,
+      "bytes_per_ledger_4s_at_1500tps": 32766000.0,
+      "bytes_per_day_at_1500tps": 707745600000,
+      "signature_bytes_per_day_at_1500tps": 428846400000,
+      "mb_per_day_at_1500tps": 707745.6,
+      "sig_mb_per_day_at_1500tps": 428846.4
+    },
+    "ML-DSA-87": {
+      "model_tx_bytes": 7419,
+      "bytes_per_ledger_4s_at_1500tps": 44514000.0,
+      "bytes_per_day_at_1500tps": 961502400000,
+      "signature_bytes_per_day_at_1500tps": 599659200000,
+      "mb_per_day_at_1500tps": 961502.4,
+      "sig_mb_per_day_at_1500tps": 599659.2
+    },
+    "SLH-DSA-128s": {
+      "model_tx_bytes": 8088,
+      "bytes_per_ledger_4s_at_1500tps": 48528000.0,
+      "bytes_per_day_at_1500tps": 1048204800000,
+      "signature_bytes_per_day_at_1500tps": 1018137600000,
+      "mb_per_day_at_1500tps": 1048204.8,
+      "sig_mb_per_day_at_1500tps": 1018137.6
+    },
+    "SLH-DSA-128f": {
+      "model_tx_bytes": 17320,
+      "bytes_per_ledger_4s_at_1500tps": 103920000.0,
+      "bytes_per_day_at_1500tps": 2244672000000,
+      "signature_bytes_per_day_at_1500tps": 2214604800000,
+      "mb_per_day_at_1500tps": 2244672.0,
+      "sig_mb_per_day_at_1500tps": 2214604.8
+    },
+    "SLH-DSA-192s": {
+      "model_tx_bytes": 16472,
+      "bytes_per_ledger_4s_at_1500tps": 98832000.0,
+      "bytes_per_day_at_1500tps": 2134771200000,
+      "signature_bytes_per_day_at_1500tps": 2102630400000,
+      "mb_per_day_at_1500tps": 2134771.2,
+      "sig_mb_per_day_at_1500tps": 2102630.4
+    },
+    "SLH-DSA-192f": {
+      "model_tx_bytes": 35912,
+      "bytes_per_ledger_4s_at_1500tps": 215472000.0,
+      "bytes_per_day_at_1500tps": 4654195200000,
+      "signature_bytes_per_day_at_1500tps": 4622054400000,
+      "mb_per_day_at_1500tps": 4654195.2,
+      "sig_mb_per_day_at_1500tps": 4622054.4
+    },
+    "SLH-DSA-256s": {
+      "model_tx_bytes": 30056,
+      "bytes_per_ledger_4s_at_1500tps": 180336000.0,
+      "bytes_per_day_at_1500tps": 3895257600000,
+      "signature_bytes_per_day_at_1500tps": 3861043200000,
+      "mb_per_day_at_1500tps": 3895257.6,
+      "sig_mb_per_day_at_1500tps": 3861043.2
+    },
+    "SLH-DSA-256f": {
+      "model_tx_bytes": 50120,
+      "bytes_per_ledger_4s_at_1500tps": 300720000.0,
+      "bytes_per_day_at_1500tps": 6495552000000,
+      "signature_bytes_per_day_at_1500tps": 6461337600000,
+      "mb_per_day_at_1500tps": 6495552.0,
+      "sig_mb_per_day_at_1500tps": 6461337.6
+    }
+  },
+  "whitepaper_quorum_bytes_24_of_35": 79416,
+  "whitepaper_quorum_prepare_precommit_double_bytes": 158832,
+  "checks": [
+    {
+      "name": "mldsa65_signature_is_3309",
+      "status": "PASS",
+      "detail": "FIPS 204 Table 2: ML-DSA-65 signature 3309 B"
+    },
+    {
+      "name": "mldsa65_pubkey_is_1952",
+      "status": "PASS",
+      "detail": "FIPS 204 Table 2: ML-DSA-65 public key 1952 B"
+    },
+    {
+      "name": "ed25519_signature_is_64",
+      "status": "PASS",
+      "detail": "RFC 8032 section 7: Ed25519 signature 64 B"
+    },
+    {
+      "name": "slh128s_smallest_pq_signature",
+      "status": "PASS",
+      "detail": "FIPS 205 Table 2: smallest SLH-DSA signature 7856 B"
+    },
+    {
+      "name": "slh256f_largest_signature",
+      "status": "PASS",
+      "detail": "FIPS 205 Table 2: largest SLH-DSA signature 49856 B"
+    },
+    {
+      "name": "mldsa65_sig_ratio_gt_50",
+      "status": "PASS",
+      "detail": "DERIVED: 3309/64 = 51.7x"
+    },
+    {
+      "name": "mldsa65_tx_larger_than_ed25519_tx",
+      "status": "PASS",
+      "detail": "DERIVED: model tx 5461 B vs Ed25519 297 B"
+    },
+    {
+      "name": "slh256f_tx_larger_than_mldsa87_tx",
+      "status": "PASS",
+      "detail": "DERIVED: largest SLH-DSA model tx exceeds ML-DSA-87 model tx"
+    },
+    {
+      "name": "all_model_tx_positive",
+      "status": "PASS",
+      "detail": "every model transaction exceeds the base overhead"
+    },
+    {
+      "name": "whitepaper_quorum_arithmetic",
+      "status": "PASS",
+      "detail": "DERIVED: 24 x 3309 = 79416 B (whitepaper section 1.11: 79416 B)"
+    }
+  ],
+  "summary": {
+    "passed": 10,
+    "failed": 0,
+    "total": 10
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "python": "3.12.3",
+  "steps": {
+    "sizes": {
+      "exit_code": 0,
+      "passed": 10,
+      "failed": 0,
+      "total": 10,
+      "log": "sizes.log",
+      "output": "sizes.json"
+    },
+    "bench": {
+      "exit_code": 0,
+      "passed": 10,
+      "failed": 0,
+      "total": 10,
+      "log": "bench.log",
+      "output": "bench.json"
+    },
+    "fees": {
+      "exit_code": 0,
+      "passed": 9,
+      "failed": 0,
+      "total": 9,
+      "log": "fees.log",
+      "output": "fees.json"
+    },
+    "mitigations": {
+      "exit_code": 0,
+      "passed": 9,
+      "failed": 0,
+      "total": 9,
+      "log": "mitigations.log",
+      "output": "mitigations.json"
+    }
+  },
+  "totals": {
+    "passed": 38,
+    "failed": 0,
+    "total": 38
+  },
+  "overall": "PASS"
+}

@@ -1,0 +1,37 @@
+[PASS] compression_mldsa65_near_zero: MEASURED: zlib-9 on 3309 B stand-in signature reduces by -0.33%
+[PASS] compression_ed25519_near_zero: MEASURED: zlib-9 on 64 B stand-in signature reduces by <1%
+[PASS] compression_deterministic: MEASURED: compression output is deterministic across runs
+[PASS] hybrid_larger_than_pure: DERIVED: every composite signature is larger than the pure ML-DSA signature
+[PASS] hybrid_mldsa65_ed25519_size: DERIVED: 3309 + 64 + 8 framing = 3381 B
+[PASS] batching_simulation_labelled: every batching figure carries the simulation-only label
+[PASS] batching_assumed_factor_0_8: STATED ASSUMPTION: amortized factor 0.8 (20% saving), not a measured gain
+[PASS] bls_rejected: BLS aggregation explicitly rejected: pairing-based, broken by Shor
+[PASS] pq_aggregation_rejected: post-quantum aggregation explicitly rejected: no standardized scheme
+
+Compression (MEASURED, zlib-9 on deterministic stand-in signature bytes):
+  Ed25519            64 B ->     75 B  (-17.19%)
+  secp256k1          64 B ->     75 B  (-17.19%)
+  ML-DSA-44        2420 B ->   2431 B  (-0.45%)
+  ML-DSA-65        3309 B ->   3320 B  (-0.33%)
+  ML-DSA-87        4627 B ->   4638 B  (-0.24%)
+  SLH-DSA-128s     7856 B ->   7867 B  (-0.14%)
+  SLH-DSA-128f    17088 B ->  17104 B  (-0.09%)
+  SLH-DSA-192s    16224 B ->  16235 B  (-0.07%)
+  SLH-DSA-192f    35664 B ->  35685 B  (-0.06%)
+  SLH-DSA-256s    29792 B ->  29808 B  (-0.05%)
+  SLH-DSA-256f    49856 B ->  49882 B  (-0.05%)
+
+Hybrid/composite signature sizes (DERIVED arithmetic):
+  ML-DSA-44+Ed25519      2492 B  (1.030x pure ML-DSA, +72 B)
+  ML-DSA-44+secp256k1    2492 B  (1.030x pure ML-DSA, +72 B)
+  ML-DSA-65+Ed25519      3381 B  (1.022x pure ML-DSA, +72 B)
+  ML-DSA-65+secp256k1    3381 B  (1.022x pure ML-DSA, +72 B)
+  ML-DSA-87+Ed25519      4699 B  (1.016x pure ML-DSA, +72 B)
+  ML-DSA-87+secp256k1    4699 B  (1.016x pure ML-DSA, +72 B)
+
+Batching (SIMULATION ONLY, assumed 0.8x amortized factor):
+  Ed25519        18,868 -> 23,585 verifies/s/core (simulated)
+  ML-DSA-44      25,000 -> 31,250 verifies/s/core (simulated)
+  ML-DSA-65      16,667 -> 20,833 verifies/s/core (simulated)
+
+Mitigations: 9/9 checks passed
