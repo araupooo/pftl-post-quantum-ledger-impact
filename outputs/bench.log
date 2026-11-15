@@ -10,17 +10,17 @@
 [PASS] fastpay_sign_0_52ms_recorded: MODEL INPUT: PostFiat FastPay, ML-DSA-65 signing 0.52 ms (fleet hardware, CPU unspecified)
 
 Measured stand-in (hashlib.sha256 over signature-sized buffer):
-  Ed25519            64 B  median     0.63 us  (1,584,786 hashes/s)
-  secp256k1          64 B  median     0.63 us  (1,584,786 hashes/s)
-  ML-DSA-44        2420 B  median     3.15 us  (317,965 hashes/s)
-  ML-DSA-65        3309 B  median     4.10 us  (244,141 hashes/s)
-  ML-DSA-87        4627 B  median     5.54 us  (180,538 hashes/s)
-  SLH-DSA-128s     7856 B  median     8.90 us  (112,322 hashes/s)
-  SLH-DSA-128f    17088 B  median    18.74 us  (53,368 hashes/s)
-  SLH-DSA-192s    16224 B  median    17.80 us  (56,189 hashes/s)
-  SLH-DSA-192f    35664 B  median    38.66 us  (25,868 hashes/s)
-  SLH-DSA-256s    29792 B  median    32.35 us  (30,913 hashes/s)
-  SLH-DSA-256f    49856 B  median    53.76 us  (18,601 hashes/s)
+  Ed25519            64 B  median     0.64 us  (1,560,062 hashes/s)
+  secp256k1          64 B  median     0.64 us  (1,560,062 hashes/s)
+  ML-DSA-44        2420 B  median     3.16 us  (316,056 hashes/s)
+  ML-DSA-65        3309 B  median     4.12 us  (242,954 hashes/s)
+  ML-DSA-87        4627 B  median     5.55 us  (180,245 hashes/s)
+  SLH-DSA-128s     7856 B  median     8.93 us  (111,944 hashes/s)
+  SLH-DSA-128f    17088 B  median    18.80 us  (53,197 hashes/s)
+  SLH-DSA-192s    16224 B  median    17.84 us  (56,063 hashes/s)
+  SLH-DSA-192f    35664 B  median    38.54 us  (25,948 hashes/s)
+  SLH-DSA-256s    29792 B  median    32.27 us  (30,990 hashes/s)
+  SLH-DSA-256f    49856 B  median    53.70 us  (18,622 hashes/s)
 
 Calibrated MODEL verify throughput (single core, from published times):
   Ed25519        0.053 ms  -> 18,867.9 verifies/s

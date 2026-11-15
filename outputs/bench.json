@@ -14,113 +14,113 @@
   "measured_standin_hashing": {
     "Ed25519": {
       "signature_bytes": 64,
-      "median_s": 6.31e-07,
-      "min_s": 6.01e-07,
-      "max_s": 1.7586e-05,
-      "mean_s": 6.667279999999999e-07,
+      "median_s": 6.41e-07,
+      "min_s": 6.1e-07,
+      "max_s": 2.7762e-05,
+      "mean_s": 6.72227e-07,
       "iterations": 2000,
       "warmup": 200,
-      "hashes_per_second_median": 1584786.1
+      "hashes_per_second_median": 1560062.4
     },
     "secp256k1": {
       "signature_bytes": 64,
-      "median_s": 6.31e-07,
-      "min_s": 6.1e-07,
-      "max_s": 1.7096e-05,
-      "mean_s": 6.59154e-07,
+      "median_s": 6.41e-07,
+      "min_s": 6.11e-07,
+      "max_s": 2.6119e-05,
+      "mean_s": 6.56081e-07,
       "iterations": 2000,
       "warmup": 200,
-      "hashes_per_second_median": 1584786.1
+      "hashes_per_second_median": 1560062.4
     },
     "ML-DSA-44": {
       "signature_bytes": 2420,
-      "median_s": 3.145e-06,
-      "min_s": 3.114e-06,
-      "max_s": 0.00010677,
-      "mean_s": 3.3305095e-06,
+      "median_s": 3.164e-06,
+      "min_s": 3.134e-06,
+      "max_s": 2.9224e-05,
+      "mean_s": 3.288775e-06,
       "iterations": 2000,
       "warmup": 200,
-      "hashes_per_second_median": 317965.0
+      "hashes_per_second_median": 316055.6
     },
     "ML-DSA-65": {
       "signature_bytes": 3309,
-      "median_s": 4.096e-06,
-      "min_s": 4.057e-06,
-      "max_s": 3.8968e-05,
-      "mean_s": 4.237378e-06,
+      "median_s": 4.116e-06,
+      "min_s": 4.086e-06,
+      "max_s": 3.4121e-05,
+      "mean_s": 4.272139e-06,
       "iterations": 2000,
       "warmup": 200,
-      "hashes_per_second_median": 244140.6
+      "hashes_per_second_median": 242954.3
     },
     "ML-DSA-87": {
       "signature_bytes": 4627,
-      "median_s": 5.539e-06,
-      "min_s": 5.498e-06,
-      "max_s": 8.2184e-05,
-      "mean_s": 5.8071505e-06,
+      "median_s": 5.548e-06,
+      "min_s": 5.508e-06,
+      "max_s": 0.000909936,
+      "mean_s": 6.3233665e-06,
       "iterations": 2000,
       "warmup": 200,
-      "hashes_per_second_median": 180538.0
+      "hashes_per_second_median": 180245.1
     },
     "SLH-DSA-128s": {
       "signature_bytes": 7856,
-      "median_s": 8.903e-06,
-      "min_s": 8.873e-06,
-      "max_s": 0.000448223,
-      "mean_s": 9.8961415e-06,
+      "median_s": 8.933e-06,
+      "min_s": 8.893e-06,
+      "max_s": 0.000158417,
+      "mean_s": 9.798234e-06,
       "iterations": 2000,
       "warmup": 200,
-      "hashes_per_second_median": 112321.7
+      "hashes_per_second_median": 111944.5
     },
     "SLH-DSA-128f": {
       "signature_bytes": 17088,
-      "median_s": 1.8738e-05,
-      "min_s": 1.8688e-05,
-      "max_s": 0.000197146,
-      "mean_s": 1.98991695e-05,
+      "median_s": 1.8798e-05,
+      "min_s": 1.8758e-05,
+      "max_s": 0.000155314,
+      "mean_s": 1.9649056e-05,
       "iterations": 2000,
       "warmup": 200,
-      "hashes_per_second_median": 53367.5
+      "hashes_per_second_median": 53197.1
     },
     "SLH-DSA-192s": {
       "signature_bytes": 16224,
-      "median_s": 1.7797e-05,
-      "min_s": 1.7747e-05,
-      "max_s": 0.000402114,
-      "mean_s": 1.87996545e-05,
+      "median_s": 1.7837e-05,
+      "min_s": 1.7786e-05,
+      "max_s": 0.000163185,
+      "mean_s": 1.8959485e-05,
       "iterations": 2000,
       "warmup": 200,
-      "hashes_per_second_median": 56189.2
+      "hashes_per_second_median": 56063.2
     },
     "SLH-DSA-192f": {
       "signature_bytes": 35664,
-      "median_s": 3.8658e-05,
-      "min_s": 3.8588e-05,
-      "max_s": 0.000251678,
-      "mean_s": 4.2042343e-05,
+      "median_s": 3.8538e-05,
+      "min_s": 3.8457e-05,
+      "max_s": 0.000269335,
+      "mean_s": 4.1027931e-05,
       "iterations": 2000,
       "warmup": 200,
-      "hashes_per_second_median": 25867.9
+      "hashes_per_second_median": 25948.4
     },
     "SLH-DSA-256s": {
       "signature_bytes": 29792,
-      "median_s": 3.2349e-05,
-      "min_s": 3.2288e-05,
-      "max_s": 0.000487002,
-      "mean_s": 3.3466776e-05,
+      "median_s": 3.2269e-05,
+      "min_s": 3.2199e-05,
+      "max_s": 0.000144857,
+      "mean_s": 3.3999051e-05,
       "iterations": 2000,
       "warmup": 200,
-      "hashes_per_second_median": 30912.9
+      "hashes_per_second_median": 30989.5
     },
     "SLH-DSA-256f": {
       "signature_bytes": 49856,
-      "median_s": 5.376e-05,
-      "min_s": 5.34e-05,
-      "max_s": 0.001195705,
-      "mean_s": 5.66177905e-05,
+      "median_s": 5.3701e-05,
+      "min_s": 5.357e-05,
+      "max_s": 0.000469264,
+      "mean_s": 5.61974645e-05,
       "iterations": 2000,
       "warmup": 200,
-      "hashes_per_second_median": 18601.2
+      "hashes_per_second_median": 18621.6
     }
   },
   "calibrated_verify_model": {
