@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PFTL Post-Quantum Ledger Impact Assessment</title>
+<style>
+body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;max-width:900px;margin:2rem auto;padding:0 1rem;color:#1a1a1a;line-height:1.55}
+h1{font-size:1.7rem;border-bottom:2px solid #222;padding-bottom:.4rem}
+h2{font-size:1.25rem;margin-top:2rem;border-bottom:1px solid #ccc;padding-bottom:.3rem}
+h3{font-size:1.05rem;margin-top:1.5rem}
+table{border-collapse:collapse;width:100%;margin:.8rem 0;font-size:.92rem}
+th,td{border:1px solid #bbb;padding:.35rem .5rem;text-align:left}
+th{background:#eee}
+code{background:#f2f2f2;padding:.05rem .25rem;border-radius:3px}
+pre{background:#f2f2f2;padding:.8rem;overflow-x:auto;border-radius:4px}
+.callout{background:#fff8e1;border-left:4px solid #d4a017;padding:.7rem 1rem;margin:1rem 0}
+.reject{background:#fdecea;border-left:4px solid #b3261e;padding:.7rem 1rem;margin:1rem 0}
+.small{font-size:.85rem;color:#555}
+.tag{font-weight:700}
+</style>
+</head>
+<body>
+<h1>PFTL Post-Quantum Ledger Impact Assessment</h1>
+<p class="small">Reproducible assessment of how ML-DSA-44/65/87 and SLH-DSA signatures affect transaction size, throughput, fees, validator storage, and spam resistance on a ledger of the XRPL family (postfiatd), versus Ed25519/secp256k1. Labels: <span class="tag">MEASURED</span> (produced by this harness), <span class="tag">MODEL</span> (calibrated from published measurements), <span class="tag">DERIVED</span> (arithmetic shown), <span class="tag">ASSUMED</span> (stated modelling input), <span class="tag">UNVERIFIED</span> (not confirmed). Full detail, sources, and the claim-to-evidence index are in the companion files (<code>findings.md</code>, <code>sources.md</code>, <code>claims.md</code>, <code>model.md</code>, <code>mitigations.md</code>, <code>measurements.md</code>, <code>limitations.md</code>). Reproduce with <code>python3 scripts/run_all.py</code> — 38/38 checks pass.</p>
+
+<h2>Headline results</h2>
+<ul>
+<li>A model ML-DSA-65 transaction is <strong>5,461 bytes</strong> vs <strong>297 bytes</strong> for Ed25519 — <strong>18.4x</strong> larger (DERIVED). The signature alone is 3,309 bytes vs 64 bytes — <strong>51.7x</strong> (FIPS 204 Table 2; RFC 8032 §7).</li>
+<li>At 1,500 TPS, ML-DSA-65 transactions add <strong>~708 GB/day</strong> to the ledger stream vs <strong>~38.5 GB/day</strong> for Ed25519 (DERIVED).</li>
+<li>Fees are <strong>count-based, not byte-based</strong>: a 3,309-byte ML-DSA-65 signature costs the same <strong>10 drops</strong> as a 64-byte Ed25519 signature at base load. Spam per ledger megabyte costs <strong>1,830 drops</strong> via ML-DSA-65 vs <strong>33,670 drops</strong> via Ed25519 (DERIVED).</li>
+<li>Verification is not the bottleneck: calibrated MODEL throughput is <strong>~16,667 ML-DSA-65 verifies/second per core</strong>, vs ~18,868/second derived for Ed25519.</li>
+<li>postfiatd contains <strong>no ML-DSA code</strong> (verified by source grep at commit <code>0085a1f</code>).</li>
+<li>Compression does not help: zlib-9 <strong>increases</strong> an ML-DSA-65 stand-in signature by 0.33% (MEASURED).</li>
+</ul>
+
+<h2>1. Signature sizes (verified)</h2>
+<table>
+<tr><th>Scheme</th><th>Public key (B)</th><th>Signature (B)</th><th>Signature vs Ed25519</th></tr>
+<tr><td>Ed25519 (RFC 8032 §7)</td><td>32 (33 wire)</td><td>64</td><td>1.0x</td></tr>
+<tr><td>secp256k1 (compact)</td><td>33</td><td>64 (DER 68–72)</td><td>1.0x</td></tr>
+<tr><td>ML-DSA-44 (FIPS 204)</td><td>1,312</td><td>2,420</td><td>37.8x</td></tr>
+<tr><td>ML-DSA-65 (FIPS 204)</td><td>1,952</td><td>3,309</td><td>51.7x</td></tr>
+<tr><td>ML-DSA-87 (FIPS 204)</td><td>2,592</td><td>4,627</td><td>72.3x</td></tr>
+<tr><td>SLH-DSA-128s (FIPS 205)</td><td>32</td><td>7,856</td><td>122.8x</td></tr>
+<tr><td>SLH-DSA-128f (FIPS 205)</td><td>32</td><td>17,088</td><td>267.0x</td></tr>
+<tr><td>SLH-DSA-192s (FIPS 205)</td><td>48</td><td>16,224</td><td>253.5x</td></tr>
+<tr><td>SLH-DSA-192f (FIPS 205)</td><td>48</td><td>35,664</td><td>557.2x</td></tr>
+<tr><td>SLH-DSA-256s (FIPS 205)</td><td>64</td><td>29,792</td><td>465.5x</td></tr>
+<tr><td>SLH-DSA-256f (FIPS 205)</td><td>64</td><td>49,856</td><td>779.0x</td></tr>
+</table>
+<p>Security categories: ML-DSA-44 category 2, ML-DSA-65 category 3, ML-DSA-87 category 5 (FIPS 204 §4); SLH-DSA-128* category 1, 192* category 3, 256* category 5 (FIPS 205 §11).</p>
+
+<h2>2. Transaction size and ledger growth (DERIVED)</h2>
+<p>Model transaction = ASSUMED 200-byte base overhead + wire-form public key + signature.</p>
+<table>
+<tr><th>Scheme</th><th>Model tx (B)</th><th>Tx vs Ed25519</th><th>Ledger bytes/day at 1,500 TPS</th></tr>
+<tr><td>Ed25519</td><td>297</td><td>1.0x</td><td>38,491 MB (~38.5 GB)</td></tr>
+<tr><td>ML-DSA-44</td><td>3,932</td><td>13.2x</td><td>509,587 MB (~510 GB)</td></tr>
+<tr><td>ML-DSA-65</td><td>5,461</td><td>18.4x</td><td>707,746 MB (~708 GB)</td></tr>
+<tr><td>ML-DSA-87</td><td>7,419</td><td>25.0x</td><td>961,502 MB (~962 GB)</td></tr>
+<tr><td>SLH-DSA-128s</td><td>8,088</td><td>27.2x</td><td>1,048,205 MB (~1.05 TB)</td></tr>
+<tr><td>SLH-DSA-256f</td><td>50,120</td><td>168.8x</td><td>6,495,552 MB (~6.50 TB)</td></tr>
+</table>
+<p>Per 4-second ledger at 1,500 TPS (6,000 transactions): Ed25519 1,782,000 bytes; ML-DSA-65 32,766,000 bytes (~32.8 MB). Whitepaper cross-check (DERIVED): 24 × 3,309 = <strong>79,416</strong> bytes for a quorum of 24 of 35 validators, matching whitepaper §1.11 exactly; prepare and precommit sets double that before framing.</p>
+
+<h2>3. Verification cost and throughput (MODEL)</h2>
+<p>No native ML-DSA library was run and no library timing was fabricated. Throughput below is a calibrated MODEL from published measurements; the harness also measures a deterministic stand-in hashing workload on the local machine (median 0.64 µs at 64 B → 53.61 µs at 49,856 B), which measures the machine, not ML-DSA.</p>
+<table>
+<tr><th>Scheme</th><th>Verify</th><th>Verifies/second/core (MODEL)</th></tr>
+<tr><td>Ed25519</td><td>0.053 ms (DERIVED from H33)</td><td>18,867.9</td></tr>
+<tr><td>ML-DSA-44</td><td>0.040 ms (cryptoai.wtf, M3 Max, liboqs)</td><td>25,000.0</td></tr>
+<tr><td>ML-DSA-65</td><td>0.060 ms (MDPI 2025, liboqs 0.7.2)</td><td>16,666.7</td></tr>
+<tr><td>ML-DSA-87</td><td>UNVERIFIED</td><td>—</td></tr>
+<tr><td>secp256k1</td><td>UNVERIFIED</td><td>—</td></tr>
+</table>
+<p>One core verifies ~16,667 ML-DSA-65 signatures per second — 11.1x the 1,500 TPS workload. Verification latency is not the bottleneck; ledger byte volume is. Published ML-DSA-65 verify figures differ 2.5x across hardware (0.06 ms server E1 vs 24 µs Graviton4), which bounds the precision of any single throughput number. No published SLH-DSA verification time was found; SLH-DSA is excluded from the cost model.</p>
+
+<h2>4. Fee market (count-based, not byte-based)</h2>
+<p>Reference fee <strong>10 drops</strong> (postfiatd <code>Config.h</code>); base fee level <strong>256</strong> (<code>FeeEscalation.md</code>). Beyond the open-ledger limit, required fee level = median level × (transactions in open ledger / limit)² (quadratic). At limit 50, median level 256: 50 tx → 10 drops; 100 tx → 40 drops; 200 tx → 160 drops; 500 tx → 1,000 drops.</p>
+<div class="callout"><strong>Base fee is identical for every scheme: 10 drops.</strong> A 3,309-byte ML-DSA-65 signature costs the same as a 64-byte Ed25519 signature at base load. Any claim that fees rise proportionally to signature size is wrong for this fee design.</div>
+<p>Bytes per drop at base load (DERIVED): Ed25519 29.7; ML-DSA-65 546.1; SLH-DSA-256f 5,012.0.</p>
+
+<h2>5. Spam resistance (DERIVED)</h2>
+<table>
+<tr><th>Scheme</th><th>Transactions per 1 MB</th><th>Drops per 1 MB</th></tr>
+<tr><td>Ed25519</td><td>3,367</td><td>33,670</td></tr>
+<tr><td>ML-DSA-44</td><td>254</td><td>2,540</td></tr>
+<tr><td>ML-DSA-65</td><td>183</td><td>1,830</td></tr>
+<tr><td>ML-DSA-87</td><td>134</td><td>1,340</td></tr>
+<tr><td>SLH-DSA-128s</td><td>123</td><td>1,230</td></tr>
+<tr><td>SLH-DSA-256f</td><td>19</td><td>190</td></tr>
+</table>
+<p>Spamming 1 MB of ledger via ML-DSA-65 costs ~18.4x less than via Ed25519. The open-ledger limit counts transactions, not bytes, so a ledger can fill with far more bytes before quadratic escalation bites. A size-proportional fee would require a protocol change (new transaction-cost rule / amendment); no such amendment exists.</p>
+
+<h2>6. Mitigations</h2>
+<h3>Compression — MEASURED, does not work</h3>
+<p>zlib-9 on deterministic stand-in signature bytes: ML-DSA-65 3,309 B → 3,320 B (<strong>+0.33%</strong>, larger); ML-DSA-44 +0.45%; SLH-DSA-256f +0.05%; Ed25519 64 B → 75 B (+17.19%, zlib framing overhead). Post-quantum signatures are near-maximally compressed lattice/hash vectors; no standardized ML-DSA compression exists in FIPS 204.</p>
+<h3>Hybrid / composite signatures — DERIVED, larger not smaller</h3>
+<p>ML-DSA-65+Ed25519 = <strong>3,381 B (1.022x pure ML-DSA)</strong>; ML-DSA-44+Ed25519 = 2,492 B (1.030x); ML-DSA-87+Ed25519 = 4,699 B (1.016x). A composite buys migration safety, not size. Status: draft-ietf-lamps-pq-composite-sigs-19, in IESG evaluation — <strong>not an RFC, not a NIST standard</strong>; composite ML-DSA offers EUF-CMA but not SUF-CMA.</p>
+<h3>Batching — SIMULATION ONLY</h3>
+<p>FIPS 204 (§5.3) specifies single-signature verification only; no batch-verification procedure exists. A hypothetical amortized factor of 0.8x (ASSUMED) would give ML-DSA-65 20,833 verifies/second/core (simulated). This is what a batch mechanism would need to deliver, not a measured gain. Parallel verification across cores is a real deployment lever (MODEL: linear scaling assumed).</p>
+<div class="reject"><strong>REJECTED: BLS aggregation.</strong> BLS (RFC 9591) aggregates many signatures into one 96-byte aggregate, but it rests on elliptic-curve pairings (BLS12-381). Shor's algorithm breaks elliptic-curve discrete logarithms, so BLS offers no quantum resistance. It is a classical compression technique only.</div>
+<div class="reject"><strong>REJECTED: post-quantum aggregation.</strong> No post-quantum signature aggregation scheme is a NIST standard. ML-DSA and SLH-DSA have no standardized aggregate form; proposals are research-stage.</div>
+<h3>Smaller parameter set</h3>
+<p>ML-DSA-44 instead of ML-DSA-65 saves 889 bytes per signature at security category 2 instead of 3 (DERIVED). Whether category 2 is acceptable is a policy decision. SLH-DSA-128s (32-byte public key, 7,856-byte signature) only makes sense where signing is rare.</p>
+<h3>Strongest project-grounded mitigation: off-consensus certificate lanes</h3>
+<p>The PostFiat FastPay series measures it: certificates ~15 KB (4× ML-DSA-65 signatures); cryptography ~2% of latency, network ~96%; owned-lane p50 55 ms (n=25,000). Settlement moves off the consensus path, so per-transaction signature bytes stop consuming consensus/ledger capacity.</p>
+
+<h2>7. Limitations</h2>
+<ul>
+<li>No per-transaction byte-size cap was found; admissibility of large post-quantum transactions is <strong>UNVERIFIED</strong> (needs a live-node test, not run here).</li>
+<li>No native ML-DSA timing on validator hardware; throughput figures are a calibrated MODEL.</li>
+<li>No published SLH-DSA verification time in the source set; SLH-DSA excluded from the cost model.</li>
+<li><code>FeeEscalation.md</code> contradicts itself on the minimum <code>lastLedgerMedianFeeLevel</code> (128,000 vs 500) — unresolved.</li>
+<li>Workload (1,500 TPS, 4-second ledgers) is a stated assumption from the postfiatd README, not a measurement.</li>
+<li>Full list: <code>limitations.md</code>. No harness checks failed (38/38 pass).</li>
+</ul>
+
+<h2>Reproduce</h2>
+<pre>python3 scripts/run_all.py
+# Python 3 stdlib only, no network. Writes outputs/ (unedited logs + JSON).
+# Verify digests: sha256sum -c DIGESTS.txt</pre>
+<p class="small">Sources: NIST FIPS 204 (doi.org/10.6028/NIST.FIPS.204) and FIPS 205 (doi.org/10.6028/NIST.FIPS.205); RFC 8032; postfiatd commit 0085a1f; xrpl.org fee docs; PostFiat whitepaper (postfiat.org/whitepaper) §1.11; PostFiat FastPay latency series; MDPI Cryptography 2025, 9, 32; H33 ML-DSA-65 benchmark 2026-05-23; cryptoai.wtf PQC benchmarks 2026-04-02; draft-ietf-lamps-pq-composite-sigs-19 (IESG evaluation). See sources.md for full citations.</p>
+</body>
+</html>
